@@ -8,7 +8,15 @@ export class OrdersService {
     constructor(private prismaService: PrismaService){}
 
     public getAll(): Promise<Order[]> {
-        return this.prismaService.order.findMany();
+        return this.prismaService.order.findMany({
+            include: {
+                items: {
+                    include: {
+                        product: true
+                    },
+                },
+            },
+        });
     }
 
     public getById(id: Order['id']): Promise<Order | null> {
