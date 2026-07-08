@@ -1,13 +1,18 @@
 import { NavLink } from "react-router-dom";
+import { Navbar, Nav, Container } from "react-bootstrap";
 
 const NavBar = () => {
     return (
         <div>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/products">Product</NavLink>
-            <NavLink to="/checkout">Checkout</NavLink>
-            <NavLink to="/cart">Cart</NavLink>
-            NavBar
+            <Navbar expand='lg'>
+                <Navbar.Brand as={NavLink} to='/'>CoffeeShop</Navbar.Brand>
+
+                <Nav className="ms-auto">
+                    <Nav.Link as={NavLink} to='/'>Home</Nav.Link>
+                    <Nav.Link as={NavLink} to='/cart'>Cart</Nav.Link>
+                    <Nav.Link as={NavLink} to='/checkout'>Checkout</Nav.Link>
+                </Nav>
+            </Navbar>
         </div>
     )
 };
