@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchProduct, getCurrentProduct } from "../../redux/productsRedux";
 import { useEffect } from "react";
 import { Container, Row, Col, Image, Card, Button } from "react-bootstrap"
+import { addToCart } from "../../redux/cartRedux";
 
 
 const Product = () => {
@@ -24,6 +25,16 @@ const Product = () => {
         )
     }
 
+    const handleAddToCart = () => {
+        const cartProduct = {
+            productId: product.id,
+            amount: 1,
+            comment: ""
+        }
+
+        dispatch(addToCart(cartProduct));
+    }
+
     return (
         <Container className="mt-5">
             <Row>
@@ -42,6 +53,9 @@ const Product = () => {
                         <p>{product.description}</p>
                     </Card>
                 </Col>
+            </Row>
+            <Row className="mt-5 ms-auto">
+                <Button onClick={handleAddToCart}>ADD</Button>
             </Row>
         </Container>
     )
