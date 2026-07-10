@@ -58,9 +58,6 @@ const Checkout = () => {
                 )
             })}
 
-            {products.map(p => (
-                <div key={p.id}>{p.id}</div>
-            ))}
 
             <p>Name:</p>
             <input
