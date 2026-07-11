@@ -12,17 +12,32 @@ const Checkout = () => {
     const products = useSelector(getAllProducts);
     const order = useSelector(getOrder);
 
+    const [form, setForm] = useState({
+        customerName: '',
+        email: '',
+        phone: '',
+    })
+
     useEffect(() => {
         if(order) {
             dispatch(clearCart());
         }
     }, [order, dispatch]);
 
-    const [form, setForm] = useState({
-        customerName: '',
-        email: '',
-        phone: '',
-    })
+    if(order) {
+        return (
+            <div>
+                <h1>Thank you for your order!</h1>
+
+                <p>Order placed successfully</p>
+
+                <p>Order ID: {order.id}</p>
+            </div>
+        )
+    }
+
+
+
 
     const data = {
         ...form,

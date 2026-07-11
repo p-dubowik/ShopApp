@@ -1,17 +1,29 @@
-import { NavLink } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+
+import styles from "./NavBar.module.scss"
 
 const NavBar = () => {
     return (
         <div>
-            <Navbar expand='lg'>
-                <Navbar.Brand as={NavLink} to='/'>CoffeeShop</Navbar.Brand>
+            <Navbar className={styles.navbar} expand="lg">
+                <Container className={styles.container}>
+                    <Navbar.Brand as={NavLink} to='/' className={styles.logo}>PROFFEE</Navbar.Brand>
 
-                <Nav className="ms-auto">
-                    <Nav.Link as={NavLink} to='/'>Home</Nav.Link>
-                    <Nav.Link as={NavLink} to='/cart'>Cart</Nav.Link>
-                    <Nav.Link as={NavLink} to='/checkout'>Checkout</Nav.Link>
-                </Nav>
+                    <Navbar.Toggle />
+
+                    <Navbar.Collapse>
+
+                        <Nav className="ms-auto">
+
+                            <NavLink to='/' className={({isActive}) => isActive ? styles.activeLink : styles.link}>Home</NavLink>
+
+                            <NavLink to='/cart' className={({isActive}) => isActive ? styles.activeLink : styles.link}>Cart</NavLink>
+                        </Nav>
+
+                    </Navbar.Collapse>
+
+                </Container>
             </Navbar>
         </div>
     )

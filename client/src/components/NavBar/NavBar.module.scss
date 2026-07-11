@@ -1,0 +1,39 @@
+@import "../../styles/variables";
+
+.navbar {
+    background-color: $color-navbar;
+    padding: 1rem 0;
+}
+
+
+.logo {
+    color: $color-background;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+
+.link {
+    color: $color-background;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    transition: 0.3s;
+}
+
+
+.link:hover {
+    color: $color-accent;
+}
+
+
+.activeLink {
+    color: $color-accent;
+    text-decoration: none;
+    margin-left: 1.5rem;
+}
+
+.container {
+    max-width: 1500px;
+}
