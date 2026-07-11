@@ -1,27 +1,30 @@
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import styles from "./ProductCard.module.scss";
+
 const ProductCard = ({ product }) => {
 
     return (
-        <Card>
+        <Card className={styles.card}>
 
             <Card.Img
+            variant="top"
             src={product.mainImage}
-            style={{height: '200px', objectFit: 'cover'}}
+            className={styles.image}
             />
 
             <Card.Body>
-                <Card.Title>{product.name}</Card.Title>
-                <Card.Text>{product.description}</Card.Text>
-                <Card.Text className="fw-bold">{product.price}</Card.Text>
 
-                <Button
-                variant="primary"
-                as={Link}
-                to={`/product/${product.id}`}>
-                    To product
-                </Button>
+                <Card.Title className={styles.title}>{product.name}</Card.Title>
+                <Card.Text className={styles.description}>{product.description}</Card.Text>
+                <Card.Text className={styles.price}>{product.price} zł</Card.Text>
+
+                <Link to={`product/${product.id}`}>
+                    <Button className={styles.button}>
+                        More...
+                    </Button>
+                </Link>
             </Card.Body>
 
         </Card>

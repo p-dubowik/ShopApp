@@ -1,0 +1,46 @@
+@import "../../styles/variables";
+
+.card {
+    border: none;
+    border-radius: $radius;
+    overflow: hidden;
+    box-shadow: $shadow-card;
+
+    transition: $transition;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translate(0, -5px);
+}
+
+.image {
+    height: 200px;
+    object-fit: cover;
+}
+
+.title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.description {
+    color: $color-text-muted;
+    height: 50px;
+    overflow: hidden;
+}
+
+.price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $color-primary;
+}
+
+.button {
+    background-color: $color-primary;
+    border: none;
+}
+
+.button:hover {
+    background-color: $color-primary-hover;
+}

@@ -6,7 +6,7 @@ const ProductList = ({ data }) => {
         <Row className="g-4">
 
         {data.map(prod => (
-            <Col>
+            <Col md={4} className="mb-4" key={prod.id}>
                 <ProductCard product={prod} />
             </Col>
         ))}
