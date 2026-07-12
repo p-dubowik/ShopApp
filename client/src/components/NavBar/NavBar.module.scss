@@ -3,37 +3,54 @@
 .navbar {
     background-color: $color-navbar;
     padding: 1rem 0;
+
+    .container {
+        max-width: 1500px;
+
+        .logo {
+            color: $color-background;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .link {
+            color: $color-background;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: 0.3s;
+
+            &:hover {
+                color: $color-accent;
+            }
+
+            .cartAmount {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                width: 22px;
+                height: 22px;
+
+                margin-left: 0.5rem;
+                border-radius: 50%;
+
+                background: $color-accent;
+                color: $color-navbar;
+
+                font-size: 0.8rem;
+                font-weight: bold;
+            }
+        }
+
+        .activeLink {
+            color: $color-accent;
+            text-decoration: none;
+            margin-left: 1.5rem;
+        }
+
+    }
 }
 
 
-.logo {
-    color: $color-background;
-    text-decoration: none;
-    font-size: 1.4rem;
-    font-weight: 600;
-    transition: 0.3s;
-}
 
-
-.link {
-    color: $color-background;
-    text-decoration: none;
-    margin-left: 1.5rem;
-    transition: 0.3s;
-}
-
-
-.link:hover {
-    color: $color-accent;
-}
-
-
-.activeLink {
-    color: $color-accent;
-    text-decoration: none;
-    margin-left: 1.5rem;
-}
-
-.container {
-    max-width: 1500px;
-}

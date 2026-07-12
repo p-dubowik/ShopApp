@@ -1,6 +1,7 @@
 
 /* SELECTORS */
 export const getCartProducts = ({ cart }) => cart.products;
+export const getCartItemsAmount = ({ cart }) => cart.products.reduce((sum, item) => sum + item.amount, 0);
 
 /* ACTIONS */
 
