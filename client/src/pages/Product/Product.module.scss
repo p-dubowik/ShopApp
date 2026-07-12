@@ -1,0 +1,144 @@
+@import "../../styles/variables";
+@import "../../styles/global";
+
+.container {
+    padding: 5rem 0;
+
+    .product {
+        display: flex;
+        gap: 4rem;
+        align-items: center;
+
+        .gallery {
+            display: flex;
+            gap: 1rem;
+
+            flex: 1;
+
+            .thumbnails {
+                display: flex;
+                flex-direction: column;
+
+                .thumbnail {
+                    width: 80px;
+                    height: 80px;
+
+                    object-fit: cover;
+                    border-radius: $radius;
+                    cursor: pointer;
+                    opacity: 0.7;
+                    transition: $transition;
+
+                    &:hover {
+                        opacity: 1;
+                        transform: scale(1.1);
+                    }
+                }
+            }
+
+            .mainImage {
+                width: 100%;
+                max-height: 500px;
+                object-fit: cover;
+                border-radius: $radius;
+                box-shadow: $shadow-card;
+            }
+        }
+
+        .info {
+            flex: 1;
+
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .price {
+                font-size: 2rem;
+                font-weight: bold;
+                color: $color-primary;
+            }
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .container {
+        padding: 3rem 0;
+
+        .product {
+            flex-direction: column;
+            gap: 2rem;
+            align-items: stretch;
+
+            .gallery {
+                width: 100%;
+
+                .mainImage {
+                    max-height: 400px;
+                }
+
+                .thumbnails {
+                    .thumbnail {
+                        width: 70px;
+                        height: 70px;
+                    }
+                }
+            }
+
+            .info {
+                h1 {
+                    font-size: 2rem;
+                }
+
+                .price {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 770px) {
+    .container {
+        padding: 0.5rem 0;
+
+        .product {
+            gap: 1.5rem;
+
+            .gallery {
+                flex-direction: column-reverse;
+                gap: 1rem;
+
+                .mainImage {
+                    height: 350px;
+                    max-height: none;
+                }
+
+                .thumbnails {
+                    justify-content: center;
+                    flex-direction: row;
+
+                    gap: 1rem;
+
+                    .thumbnail {
+                        width: 80px;
+                        height: 70px;
+                    }
+                }
+            }
+
+            .info {
+                text-align: center;
+
+                h1 {
+                    font-size: 1.5rem;
+                }
+
+                .price {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
