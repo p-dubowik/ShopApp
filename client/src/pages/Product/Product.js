@@ -18,6 +18,8 @@ const Product = () => {
 
     const [activeImage, setActiveImage] = useState(null);
 
+    const [amount, setAmount] = useState(1);
+
     useEffect(() => {
         dispatch(fetchProduct(id));
     }, [dispatch, id])
@@ -39,12 +41,22 @@ const Product = () => {
     const handleAddToCart = () => {
         const cartProduct = {
             productId: product.id,
-            amount: 1,
+            amount,
             comment: ""
         }
 
         dispatch(addToCart(cartProduct));
     }
+
+    const increaseAmount = () => {
+        setAmount(prev => prev + 1);
+    };
+
+    const decreaseAmount = () => {
+        if(amount > 1) {
+            setAmount(prev => prev - 1);
+        }
+    };
 
     return (
         <Container className={styles.container}>
@@ -88,6 +100,18 @@ const Product = () => {
                 <p className={styles.price}>{formatPrice(product.price)}</p>
 
                 <p>{product.description}</p>
+
+                <div className={styles.amount}>
+                    <button onClick={decreaseAmount}>
+                        -
+                    </button>
+
+                    <span>{amount}</span>
+
+                    <button onClick={increaseAmount}>
+                        +
+                    </button>
+                </div>
 
                 <button onClick={handleAddToCart} className={styles.buttonPrimary}>Add to Cart</button>
 
