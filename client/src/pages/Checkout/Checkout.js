@@ -4,6 +4,10 @@ import { clearCart, getCartProducts } from "../../redux/cartRedux";
 import { getAllProducts } from "../../redux/productsRedux";
 import { getOrder, submitOrder } from "../../redux/ordersRedux";
 
+import formatPrice from "../../utils/formatPrice";
+
+import styles from "./Checkout.module.scss"
+
 const Checkout = () => {
 
     const dispatch = useDispatch();
@@ -52,48 +56,80 @@ const Checkout = () => {
     }
 
     return (
-        <div>
+        <div className={styles.checkout}>
+
             <h1>Checkout</h1>
 
-            <h3>Products</h3>
+            <div className={styles.layout}>
 
-            {cart.map(cartItem => {
-
-                const product = products.find(product => product.id === cartItem.productId);
-
-                if(!product) return null;
-
-                return (
-                    <div key={cartItem.productId}>
-                        <h3>{product.name}</h3>
-                        <p>Price: {product.price}</p>
-                        <p>Amount: {cartItem.amount}</p>
-                        <p>Comment: {cartItem.comment}</p>
-                    </div>
-                )
-            })}
+                <div className={styles.products}>
+                    <h2>Your Products</h2>
 
 
-            <p>Name:</p>
-            <input
-            name="customerName"
-            value={form.customerName}
-            onChange={handleChange}
-            />
-            <p>email:</p>
-            <input
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            />
-            <p>phone:</p>
-            <input
-            name="phone"
-            value={form.phone}
-            onChange={handleChange}
-            />
+                    {cart.map(cartItem => {
+                        
+                        const product = products.find(product => product.id === cartItem.productId);
+                        
+                        if(!product) return null;
+                        
+                        return (
+                            <div key={cartItem.productId} className={styles.product}>
 
-            <button onClick={() => dispatch(submitOrder(data))}>ORDER</button>
+                                <img
+                                    src={product.mainImage}
+                                    alt={product.name}
+                                    />
+
+                                <div>
+
+                                    <h3>{product.name}</h3>
+
+                                    <p>Amount: {cartItem.amount}</p>
+
+                                    <p>Price: {formatPrice(product.price)}</p>
+
+                                </div>
+
+                            </div>
+                        )
+                    })}
+
+                </div>
+
+                <div className={styles.form}>
+                    
+                    <h2>Your details</h2>
+
+                    <label htmlFor="customerName">Name</label>
+                    <input
+                    id="customerName"
+                    name="customerName"
+                    value={form.customerName}
+                    onChange={handleChange}
+                    />
+
+                    <label htmlFor="email">Email</label>
+                    <input
+                    id="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    />
+
+                    <label htmlFor="phone">Phone Number</label>
+                    <input
+                    id="phone"
+                    name="phone"
+                    value={form.phone}
+                    onChange={handleChange}
+                    />
+
+                    <button onClick={() => dispatch(submitOrder(data))} className={styles.buttonPrimary}>ORDER</button>
+
+                </div>
+
+            </div>
+
         </div>
     )
 };

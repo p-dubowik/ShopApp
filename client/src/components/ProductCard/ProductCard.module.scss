@@ -1,46 +1,69 @@
 @import "../../styles/variables";
+@import "../../styles/global";
 
 .card {
-    border: none;
+    display: flex;
+    flex-direction: column;
+
+    background-color: white;
     border-radius: $radius;
     overflow: hidden;
     box-shadow: $shadow-card;
 
     transition: $transition;
     height: 100%;
+
+    &:hover {
+        transform: translate(0, -5px);
+        box-shadow: $shadow-card-hover;
+    }
+
 }
 
-.card:hover {
-    transform: translate(0, -5px);
-}
+
 
 .image {
     height: 200px;
+    width: 100%;
+
     object-fit: cover;
 }
 
-.title {
-    font-size: 1.2rem;
-    font-weight: 600;
-}
+.content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    
+    padding: 1rem;
 
-.description {
-    color: $color-text-muted;
-    height: 50px;
-    overflow: hidden;
-}
+    .productName {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
 
-.price {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: $color-primary;
-}
+    .description {
+        color: $color-text-muted;
 
-.button {
-    background-color: $color-primary;
-    border: none;
-}
+        line-height: 1.5;
+        margin-bottom: auto;
+    }
 
-.button:hover {
-    background-color: $color-primary-hover;
+    .bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-top: 2rem;
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: $color-primary;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+    }
 }

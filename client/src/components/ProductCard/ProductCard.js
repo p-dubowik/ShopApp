@@ -1,4 +1,3 @@
-import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import formatPrice from "../../utils/formatPrice";
 
@@ -8,28 +7,35 @@ const ProductCard = ({ product }) => {
 
     const price = formatPrice(product.price);
     return (
-        <Card className={styles.card}>
+        <div className={styles.card}>
 
-            <Card.Img
-            variant="top"
-            src={product.mainImage}
-            className={styles.image}
-            />
+            <img src={product.mainImage} alt={product.name} className={styles.image}/>
 
-            <Card.Body>
+            <div className={styles.content}>
 
-                <Card.Title className={styles.title}>{product.name}</Card.Title>
-                <Card.Text className={styles.description}>{product.description}</Card.Text>
-                <Card.Text className={styles.price}>{price}</Card.Text>
+                <h3 className={styles.productName}>{product.name}</h3>
 
-                <Link to={`product/${product.id}`}>
-                    <Button className={styles.button}>
-                        More...
-                    </Button>
-                </Link>
-            </Card.Body>
+                <p className={styles.description}>{product.description}</p>
 
-        </Card>
+                <div className={styles.bottom}>
+
+                    <span className={styles.price}>{price}</span>
+
+                    <div className={styles.buttons}>
+
+                        <Link to={`/product/${product.id}`}>
+                            <button className={styles.buttonPrimary}>More</button>
+                        </Link>
+
+                        <button className={styles.buttonSecondary}>Add to cart</button>
+
+                    </div>
+                    
+                </div>
+
+            </div>
+
+        </div>
     )
 };
 

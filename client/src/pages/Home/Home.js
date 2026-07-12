@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, getAllProducts } from "../../redux/productsRedux";
+import Hero from "../../components/Hero/Hero";
 import ProductList from "../../components/ProductList/ProductList";
 
 const Home = () => {
@@ -14,7 +15,8 @@ const Home = () => {
 
     return (
         <div>
-            <h1>HOME</h1>
+            <Hero />
+
             <ProductList data={products} />
             
         </div>

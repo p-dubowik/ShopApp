@@ -1,0 +1,74 @@
+@import "../../styles/variables";
+@import "../../styles/global";
+
+.checkout {
+    padding: 4rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    h1 {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .layout {
+        display: flex;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+
+        .products {
+            background: white;
+            padding: 2rem;
+            border-radius: $radius;
+            box-shadow: $shadow-card;
+            text-align: center;
+            flex: 1;
+
+            .product {
+                display: flex;
+                gap: 1rem;
+                padding: 1rem 0;
+
+                border-bottom: 1px solid black;
+
+                img {
+                    width: 90px;
+                    height: 90px;
+                    object-fit: cover;
+                    border-radius: $radius;
+                }
+
+                h3 {
+                    margin: 0;
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        .form {
+            background: white;
+            padding: 2rem;
+            border-radius: $radius;
+            box-shadow: $shadow-card;
+            flex: 1;
+
+            text-align: center;
+
+            label {
+                font-weight: bold;
+            }
+
+            input {
+                width: 100%;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                border-radius: $radius;
+                border: 1px solid black;
+            }
+
+            .buttonPrimary {
+                background: $color-navbar;
+            }
+        }
+    }
+}

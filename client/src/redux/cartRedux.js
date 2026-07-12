@@ -35,6 +35,13 @@ const initialState = {
 export default function cartReducer(statePart=initialState, action = {}) {
     switch(action.type) {
         case ADD_TO_CART:
+
+            const productExist = statePart.products.find(product => product.productId === action.payload.productId);
+
+            if(productExist) {
+                return { ...statePart, products: statePart.products.map(product => product.productId === action.payload.productId ? { ...product, amount: product.amount + action.payload.amount } : product)};
+            }
+
             return { ...statePart, products: [...statePart.products, action.payload] };
         case UPDATE_AMOUNT:
             return { ...statePart, products: statePart.products.map(product => product.productId === action.payload.productId ? { ...product, amount: action.payload.amount} : product)};

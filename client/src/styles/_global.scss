@@ -1,5 +1,9 @@
 @import "./variables";
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -17,4 +21,33 @@ a {
 
 button {
     font-family: inherit;
+}
+
+.buttonPrimary{
+    background: $color-primary;
+    color: white;
+                    
+    padding: 1rem 1.5rem;
+    border-radius: $radius;
+    text-decoration: none;
+    transition: $transition;
+                    
+    &:hover {
+        background: $color-primary-hover;
+        color: white;
+    }
+}
+
+.buttonSecondary {
+    background: $color-accent;
+    color: white;
+                    
+    padding: 1rem 1.5rem;
+    border-radius: $radius;
+    text-decoration: none;
+    transition: $transition;
+                
+    &:hover {
+        background: $color-primary-hover;
+    }
 }

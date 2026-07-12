@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getCartProducts, updateAmount, updateComment, removeFromCart } from "../../redux/cartRedux";
 import { getAllProducts } from "../../redux/productsRedux";
-import { Button } from "react-bootstrap";
+import formatPrice from "../../utils/formatPrice";
+import styles from "./Cart.module.scss"
 
 const Cart = () => {
 
@@ -10,53 +12,98 @@ const Cart = () => {
     const cartProducts = useSelector(getCartProducts);
     const allProducts = useSelector(getAllProducts);
 
+    const totalPrice = cartProducts.reduce((sum, item) => {
+
+        const product = allProducts.find(p => p.id === item.productId);
+
+        if(!product) return sum;
+
+        return sum + product.price * item.amount;
+    }, 0)
+
     return (
-        <div>
-            <h1>Cart</h1>
+        <div className={styles.cart}>
+
+            <h1>Your Products</h1>
 
             {cartProducts.length === 0 && (
-                <p>Cart empty</p>
+                <p>Your cart is empty</p>
             )}
 
-            {cartProducts.map(cartItem => {
-
-                const product = allProducts.find(product => product.id === cartItem.productId);
+            {cartProducts.map(item => {
+                const product = allProducts.find(prod => prod.id === item.productId);
 
                 if(!product) return null;
 
                 return (
-                    <div key={cartItem.productId}>
-                        <h3>{product.name}</h3>
-                        <p>Price: {product.price}</p>
-                        <p>Amount: {cartItem.amount}</p>
-                        <p>Comment: {cartItem.comment}</p>
+                    <div key={item.productId} className={styles.cartItem}>
 
-                        <textarea
-                        value={cartItem.comment}
-                        onChange={(e) => dispatch(updateComment({
-                            productId: cartItem.productId,
-                            comment: e.target.value
-                        }))}
-                        />
+                        <img src={product.mainImage} alt={product.name} className={styles.image}/>
 
-                        <input
-                        type="number"
-                        value={cartItem.amount}
-                        min="1"
-                        onChange={(e) => dispatch(updateAmount({
-                            productId: cartItem.productId,
-                            amount: Number(e.target.value)
-                        }))}
-                        />
+                        <div className={styles.itemInfo}>
+                            <h3>{product.name}</h3>
+                            <p>Price: {formatPrice(product.price)}</p>
 
-                        <div>
-                            <Button>+</Button>
-                            <Button>-</Button>
-                            <Button variant="warning" onClick={() => dispatch(removeFromCart(cartItem.productId))}>Remove</Button>
+
+                            <div className={styles.amount}>
+
+                                <button
+                                    onClick={() => dispatch(updateAmount({
+                                        productId: item.productId,
+                                        amount: item.amount +1
+                                    }))}
+                                    >
+                                    +
+                                </button>
+
+                                <span>{item.amount}</span>
+
+                                <button
+                                    disabled={item.amount <= 1}
+                                    onClick={() => dispatch(updateAmount({
+                                        productId: item.productId,
+                                        amount: item.amount -1
+                                    }))}
+                                    >
+                                    -
+                                </button>
+
+                            </div>
+
+                            <textarea
+                                value={item.comment}
+                                placeholder="Comment..."
+                                onChange={(e) => dispatch(updateComment({
+                                    productId: item.productId,
+                                    comment: e.target.value
+                                }))}
+                            />
+                            
                         </div>
+                            
+                        <button 
+                        onClick={() => dispatch(removeFromCart(item.productId))} 
+                        className={styles.remove}
+                        >
+                            Remove
+                        </button>
+
+
                     </div>
                 )
             })}
+
+            {cartProducts.length > 0 && (
+                <div className={styles.summary}>
+
+                    <h2>Total: {formatPrice(totalPrice)}</h2>
+
+                    <Link to="/checkout" className={styles.buttonPrimary}>
+                        Checkout
+                    </Link>
+
+                </div>
+            )}
 
         </div>
     )
