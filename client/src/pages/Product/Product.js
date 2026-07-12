@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchProduct, getCurrentProduct } from "../../redux/productsRedux";
-import { useEffect } from "react";
-import { Container, Row, Col, Image, Card, Button } from "react-bootstrap"
+import { useEffect, useState } from "react";
+import { Container } from "react-bootstrap"
 import { addToCart } from "../../redux/cartRedux";
+
+import styles from "./Product.module.scss";
 
 
 const Product = () => {
@@ -13,9 +15,17 @@ const Product = () => {
 
     const product = useSelector(getCurrentProduct);
 
+    const [activeImage, setActiveImage] = useState(null);
+
     useEffect(() => {
         dispatch(fetchProduct(id));
     }, [dispatch, id])
+
+    useEffect(() => {
+        if(product) {
+            setActiveImage(product.mainImage)
+        }
+    }, [product])
 
     if(!product) {
         return (
@@ -36,27 +46,9 @@ const Product = () => {
     }
 
     return (
-        <Container className="mt-5">
-            <Row>
-                <Col>
-                    <Image
-                    src={product.mainImage}
-                    rounded
-                    fluid
-                    style={{ height:'400px', objectFit: 'cover'}}
-                    />
-                </Col>
-
-                <Col>
-                    <Card>
-                        <h2>{product.name}</h2>
-                        <p>{product.description}</p>
-                    </Card>
-                </Col>
-            </Row>
-            <Row className="mt-5 ms-auto">
-                <Button onClick={handleAddToCart}>ADD</Button>
-            </Row>
+        <Container className={styles.container}>
+            
+            
         </Container>
     )
 };
