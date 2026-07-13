@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchProduct, getCurrentProduct } from "../../redux/productsRedux";
+import { fetchProduct, getCurrentProduct, getProductsLoading } from "../../redux/productsRedux";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap"
 import { addToCart } from "../../redux/cartRedux";
 import formatPrice from "../../utils/formatPrice";
+
+import Loader from "../../components/Loader/Loader";
 
 import styles from "./Product.module.scss";
 
@@ -15,6 +17,7 @@ const Product = () => {
     const dispatch = useDispatch();
 
     const product = useSelector(getCurrentProduct);
+    const loading = useSelector(getProductsLoading);
 
     const [activeImage, setActiveImage] = useState(null);
 
@@ -30,12 +33,14 @@ const Product = () => {
         }
     }, [product])
 
-    if(!product) {
+    if(loading) {
         return (
-            <p>
-                Loading...
-            </p>
+            <Loader />
         )
+    }
+
+    if(!product) {
+        return null;
     }
 
     const handleAddToCart = () => {

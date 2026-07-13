@@ -2,8 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { clearCart, getCartProducts } from "../../redux/cartRedux";
 import { getAllProducts } from "../../redux/productsRedux";
-import { getOrder, submitOrder } from "../../redux/ordersRedux";
-
+import { getOrder, submitOrder, getOrderLoading } from "../../redux/ordersRedux";
+import { Spinner } from "react-bootstrap";
+import Loader from "../../components/Loader/Loader";
 import formatPrice from "../../utils/formatPrice";
 
 import styles from "./Checkout.module.scss"
@@ -15,6 +16,7 @@ const Checkout = () => {
     const cart = useSelector(getCartProducts);
     const products = useSelector(getAllProducts);
     const order = useSelector(getOrder);
+    const loading = useSelector(getOrderLoading);
 
     const [form, setForm] = useState({
         customerName: '',
@@ -124,7 +126,20 @@ const Checkout = () => {
                     onChange={handleChange}
                     />
 
-                    <button onClick={() => dispatch(submitOrder(data))} className={styles.buttonPrimary}>ORDER</button>
+                    <button 
+                    disabled={loading}
+                    onClick={() => dispatch(submitOrder(data))} 
+                    className={styles.buttonPrimary}
+                    >
+                        {
+                            loading && (
+                                <Spinner size='sm' className='me-2' />
+                            )
+                        }
+                        {
+                            loading? "Sending" : "ORDER"
+                        }
+                        </button>
 
                 </div>
 

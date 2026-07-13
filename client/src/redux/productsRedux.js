@@ -3,6 +3,8 @@ import API_URL from '../config';
 /* SELECTORS */
 export const getAllProducts = ({ products }) => products.data;
 export const getCurrentProduct = ({ products }) => products.currentProduct;
+export const getProductsLoading = ({ products }) => products.loading;
+export const getProductsError = ({ products }) => products.error;
 
 /* ACTIONS */
 

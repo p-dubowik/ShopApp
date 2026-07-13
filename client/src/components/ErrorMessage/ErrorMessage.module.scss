@@ -1,0 +1,27 @@
+@import "../../styles/variables";
+@import "../../styles/global";
+
+.error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: $radius;
+
+    color: white;
+    background: $color-error;
+
+    font-weight: bold;
+    text-align: center;
+
+    p {
+        margin: 0;
+    }
+
+    .buttonPrimary {
+        background: black;
+    }
+}

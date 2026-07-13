@@ -1,0 +1,65 @@
+@import "../../styles/variables";
+
+.card {
+    background: white;
+    border-radius: $radius;
+    overflow: hidden;
+    height: 100%;
+
+    .image {
+        height: 200px;
+        background: $color-light;
+    }
+
+    .content {
+        padding: 1rem;
+
+        
+        .title {
+            height: 25px;
+            width: 70%;
+            background: $color-light;
+            margin-bottom: 1rem;
+        }
+        
+        .description {
+            height: 60px;
+            background: $color-light;
+            margin-bottom: auto;
+        }
+
+        .bottom {
+            display: flex;
+            justify-content: space-between;
+
+            .price {
+                height: 25px;
+                width: 80px;
+                background: $color-light;
+            }
+
+            .button {
+                height: 40px;
+                width: 100px;
+                background: $color-light;
+            }
+        }
+    }
+    div {
+        animation: pulse 1.5s infinite;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
