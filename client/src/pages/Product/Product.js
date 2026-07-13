@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchProduct, getCurrentProduct, getProductsLoading } from "../../redux/productsRedux";
+import { fetchProduct, getCurrentProduct, getProductsLoading, getProductsError } from "../../redux/productsRedux";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap"
 import { addToCart } from "../../redux/cartRedux";
 import formatPrice from "../../utils/formatPrice";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 import Loader from "../../components/Loader/Loader";
 
@@ -18,6 +19,7 @@ const Product = () => {
 
     const product = useSelector(getCurrentProduct);
     const loading = useSelector(getProductsLoading);
+    const error = useSelector(getProductsError);
 
     const [activeImage, setActiveImage] = useState(null);
 
@@ -36,6 +38,12 @@ const Product = () => {
     if(loading) {
         return (
             <Loader />
+        )
+    }
+
+    if(error) {
+        return (
+            <ErrorMessage message={error} onRetry={() => dispatch(fetchProduct(id))} />
         )
     }
 

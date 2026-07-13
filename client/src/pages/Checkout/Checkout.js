@@ -2,12 +2,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { clearCart, getCartProducts } from "../../redux/cartRedux";
 import { getAllProducts } from "../../redux/productsRedux";
-import { getOrder, submitOrder, getOrderLoading } from "../../redux/ordersRedux";
+import { getOrder, submitOrder, getOrderLoading, getOrderError } from "../../redux/ordersRedux";
 import { Spinner } from "react-bootstrap";
 import Loader from "../../components/Loader/Loader";
 import formatPrice from "../../utils/formatPrice";
 
 import styles from "./Checkout.module.scss"
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const Checkout = () => {
 
@@ -16,7 +17,9 @@ const Checkout = () => {
     const cart = useSelector(getCartProducts);
     const products = useSelector(getAllProducts);
     const order = useSelector(getOrder);
+
     const loading = useSelector(getOrderLoading);
+    const error = useSelector(getOrderError);
 
     const [form, setForm] = useState({
         customerName: '',
@@ -97,6 +100,10 @@ const Checkout = () => {
                     })}
 
                 </div>
+
+                    {error && (
+                        <ErrorMessage message={error} onRetry={() => dispatch(submitOrder(data))} />
+                    )}
 
                 <div className={styles.form}>
                     
