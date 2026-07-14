@@ -4,7 +4,6 @@ import { clearCartRequest, getCartProducts } from "../../redux/cartRedux";
 import { getAllProducts } from "../../redux/productsRedux";
 import { getOrder, submitOrder, getOrderLoading, getOrderError } from "../../redux/ordersRedux";
 import { Spinner } from "react-bootstrap";
-import Loader from "../../components/Loader/Loader";
 import formatPrice from "../../utils/formatPrice";
 
 import styles from "./Checkout.module.scss"

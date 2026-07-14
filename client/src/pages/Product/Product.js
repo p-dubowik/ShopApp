@@ -82,6 +82,7 @@ const Product = () => {
 
                     <img
                     src={product.mainImage}
+                    alt={product.name}
                     className={styles.thumbnail}
                     onClick={() => setActiveImage(product.mainImage)}
                     />
@@ -91,6 +92,7 @@ const Product = () => {
                         <img
                         key={image.id}
                         src={image.imageUrl}
+                        alt={product.name}
                         className={styles.thumbnail}
                         onClick={() => setActiveImage(image.imageUrl)}
                         />

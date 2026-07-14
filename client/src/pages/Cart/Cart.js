@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCartProducts, updateAmountRequest, updateCommentRequest, removeFromCartRequest } from "../../redux/cartRedux";
-import { fetchProducts, getAllProducts } from "../../redux/productsRedux";
+import { fetchProducts, getAllProducts, getProductsLoading } from "../../redux/productsRedux";
 import formatPrice from "../../utils/formatPrice";
 import styles from "./Cart.module.scss"
 import { useEffect } from "react";
@@ -12,13 +12,13 @@ const Cart = () => {
 
     const cartProducts = useSelector(getCartProducts);
     const allProducts = useSelector(getAllProducts);
-    console.log("CART:", cartProducts);
+    const loading = useSelector(getProductsLoading);
 
     useEffect(() => {
-        if(allProducts.length === 0) {
+        if(!loading && allProducts.length === 0) {
             dispatch(fetchProducts());
         }
-    }, [dispatch]);
+    }, [dispatch, loading, allProducts.length]);
 
     const totalPrice = cartProducts.reduce((sum, item) => {
 
