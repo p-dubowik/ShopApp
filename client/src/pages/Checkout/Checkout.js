@@ -1,8 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { clearCartRequest, getCartProducts } from "../../redux/cartRedux";
 import { getAllProducts } from "../../redux/productsRedux";
-import { getOrder, submitOrder, getOrderLoading, getOrderError } from "../../redux/ordersRedux";
+import { getOrder, submitOrder, getOrderLoading, getOrderError, clearOrder } from "../../redux/ordersRedux";
 import { Spinner } from "react-bootstrap";
 import formatPrice from "../../utils/formatPrice";
 
@@ -27,6 +28,14 @@ const Checkout = () => {
     })
 
     useEffect(() => {
+
+        return () => {
+            dispatch(clearOrder());
+        };
+        
+    }, [dispatch]);
+
+    useEffect(() => {
         if(order) {
             dispatch(clearCartRequest());
         }
@@ -40,6 +49,8 @@ const Checkout = () => {
                 <p>Order placed successfully</p>
 
                 <p>Order ID: {order.id}</p>
+
+                <Link to="/">Continue Shopping</Link>
             </div>
         )
     }

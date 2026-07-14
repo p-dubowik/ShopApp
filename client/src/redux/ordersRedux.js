@@ -16,11 +16,15 @@ const START_REQUEST = createActionName('START_REQUEST');
 const END_REQUEST = createActionName('END_REQUEST');
 const ERROR_REQUEST = createActionName('ERROR_REQUEST');
 
+const CLEAR_ORDER = createActionName('CLEAR_ORDER');
+
 //
 
 export const startRequest = payload => ({ payload, type: START_REQUEST });
 export const endRequest = payload => ({ payload, type: END_REQUEST });
 export const errorRequest = payload => ({ payload, type: ERROR_REQUEST });
+
+export const clearOrder = payload => ({ payload, type: CLEAR_ORDER });
 
 
 /* THUNKS */
@@ -70,7 +74,9 @@ export default function ordersReducer(statePart=initialState, action = {}) {
         case END_REQUEST:
             return {...statePart, loading: false, data: action.payload, error: null};
         case ERROR_REQUEST:
-            return {...statePart, loading: false, error: action.payload}
+            return {...statePart, loading: false, error: action.payload};
+        case CLEAR_ORDER:
+            return { ...statePart, data: null };
         default:
             return statePart;
     }
