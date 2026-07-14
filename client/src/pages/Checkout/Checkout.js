@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { clearCart, getCartProducts } from "../../redux/cartRedux";
+import { clearCartRequest, getCartProducts } from "../../redux/cartRedux";
 import { getAllProducts } from "../../redux/productsRedux";
 import { getOrder, submitOrder, getOrderLoading, getOrderError } from "../../redux/ordersRedux";
 import { Spinner } from "react-bootstrap";
@@ -29,7 +29,7 @@ const Checkout = () => {
 
     useEffect(() => {
         if(order) {
-            dispatch(clearCart());
+            dispatch(clearCartRequest());
         }
     }, [order, dispatch]);
 

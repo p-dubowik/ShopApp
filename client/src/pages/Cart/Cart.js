@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getCartProducts, updateAmount, updateComment, removeFromCart } from "../../redux/cartRedux";
-import { getAllProducts } from "../../redux/productsRedux";
+import { getCartProducts, updateAmountRequest, updateCommentRequest, removeFromCartRequest } from "../../redux/cartRedux";
+import { fetchProducts, getAllProducts } from "../../redux/productsRedux";
 import formatPrice from "../../utils/formatPrice";
 import styles from "./Cart.module.scss"
+import { useEffect } from "react";
 
 const Cart = () => {
 
@@ -11,6 +12,13 @@ const Cart = () => {
 
     const cartProducts = useSelector(getCartProducts);
     const allProducts = useSelector(getAllProducts);
+    console.log("CART:", cartProducts);
+
+    useEffect(() => {
+        if(allProducts.length === 0) {
+            dispatch(fetchProducts());
+        }
+    }, [dispatch]);
 
     const totalPrice = cartProducts.reduce((sum, item) => {
 
@@ -48,7 +56,7 @@ const Cart = () => {
                             <div className={styles.amount}>
 
                                 <button
-                                    onClick={() => dispatch(updateAmount({
+                                    onClick={() => dispatch(updateAmountRequest({
                                         productId: item.productId,
                                         amount: item.amount +1
                                     }))}
@@ -60,7 +68,7 @@ const Cart = () => {
 
                                 <button
                                     disabled={item.amount <= 1}
-                                    onClick={() => dispatch(updateAmount({
+                                    onClick={() => dispatch(updateAmountRequest({
                                         productId: item.productId,
                                         amount: item.amount -1
                                     }))}
@@ -73,7 +81,7 @@ const Cart = () => {
                             <textarea
                                 value={item.comment}
                                 placeholder="Comment..."
-                                onChange={(e) => dispatch(updateComment({
+                                onChange={(e) => dispatch(updateCommentRequest({
                                     productId: item.productId,
                                     comment: e.target.value
                                 }))}
@@ -82,7 +90,7 @@ const Cart = () => {
                         </div>
                             
                         <button 
-                        onClick={() => dispatch(removeFromCart(item.productId))} 
+                        onClick={() => dispatch(removeFromCartRequest(item.productId))} 
                         className={styles.remove}
                         >
                             Remove

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchProduct, getCurrentProduct, getProductsLoading, getProductsError } from "../../redux/productsRedux";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap"
-import { addToCart } from "../../redux/cartRedux";
+import { addToCartRequest } from "../../redux/cartRedux";
 import formatPrice from "../../utils/formatPrice";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
@@ -58,7 +58,7 @@ const Product = () => {
             comment: ""
         }
 
-        dispatch(addToCart(cartProduct));
+        dispatch(addToCartRequest(cartProduct));
     }
 
     const increaseAmount = () => {
