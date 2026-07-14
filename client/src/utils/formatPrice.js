@@ -1,5 +1,8 @@
 const formatPrice = (price) => {
-    return (price / 100).toFixed(2) + "zł";
-}
+    return new Intl.NumberFormat("pl-PL", {
+        style: "currency",
+        currency: 'PLN',
+    }).format(price / 100);
+};
 
 export default formatPrice;
