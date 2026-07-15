@@ -2,10 +2,24 @@ import { Link } from "react-router-dom";
 import formatPrice from "../../utils/formatPrice";
 
 import styles from "./ProductCard.module.scss";
+import { useDispatch } from "react-redux";
+import { addToCartRequest } from "../../redux/cartRedux";
 
 const ProductCard = ({ product }) => {
 
+    const dispatch = useDispatch();
+
     const price = formatPrice(product.price);
+
+    const handleAddtoCart = () => {
+        const cartProduct = {
+            productId: product.id,
+            amount: 1,
+            comment: '',
+        }
+
+        dispatch(addToCartRequest(cartProduct));
+    }
     return (
         <div className={styles.card}>
 

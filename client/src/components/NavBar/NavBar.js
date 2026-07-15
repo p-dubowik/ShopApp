@@ -11,7 +11,7 @@ const NavBar = () => {
 
     return (
         <div>
-            <Navbar className={styles.navbar} expand="lg">
+            <Navbar className={`navbar fixed-top ${styles.navbar}`} expand="lg">
                 <Container className={styles.container}>
                     <Navbar.Brand as={NavLink} to='/' className={styles.logo}>PROFFEE</Navbar.Brand>
 
