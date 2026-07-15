@@ -72,3 +72,27 @@
         }
     }
 }
+
+.successfulOrder {
+    text-align: center;
+    margin: 2rem auto;
+    padding: 1rem;
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    .orderId {
+        font-weight: bold;
+        color: $color-text-muted;
+
+        padding-bottom: 1rem;
+
+        span {
+            letter-spacing: 4px;
+            line-height: 3rem;
+            font-size: 1.5rem;
+            color: black;
+        }
+    }
+}

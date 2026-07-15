@@ -35,7 +35,7 @@ const Cart = () => {
             <h1>Your Products</h1>
 
             {cartProducts.length === 0 && (
-                <p>Your cart is empty</p>
+                <p className={styles.emptyCart}>Your cart is empty</p>
             )}
 
             {cartProducts.map(item => {

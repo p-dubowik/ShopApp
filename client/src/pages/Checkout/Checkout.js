@@ -43,14 +43,14 @@ const Checkout = () => {
 
     if(order) {
         return (
-            <div>
+            <div className={styles.successfulOrder}>
                 <h1>Thank you for your order!</h1>
 
                 <p>Order placed successfully</p>
 
-                <p>Order ID: {order.id}</p>
+                <p className={styles.orderId}>Order ID: <span>{order.id}</span></p>
 
-                <Link to="/">Continue Shopping</Link>
+                <Link className={styles.buttonPrimary} to="/">Continue Shopping</Link>
             </div>
         )
     }
