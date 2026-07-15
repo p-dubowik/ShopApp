@@ -2,6 +2,7 @@ import API_URL from '../config';
 
 /* SELECTORS */
 export const getAllProducts = ({ products }) => products.data;
+export const getFeaturedProducts = ({ products }) => products.data.filter(product => product.featured);
 export const getCurrentProduct = ({ products }) => products.currentProduct;
 export const getProductsLoading = ({ products }) => products.loading;
 export const getProductsError = ({ products }) => products.error;

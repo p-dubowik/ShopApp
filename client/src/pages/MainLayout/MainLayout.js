@@ -1,3 +1,4 @@
+import Footer from '../../components/Footer/Footer';
 import NavBar from '../../components/NavBar/NavBar'
 
 const MainLayout = ({ children }) => {
@@ -5,6 +6,7 @@ const MainLayout = ({ children }) => {
         <div>
             <NavBar />
             {children}
+            <Footer />
         </div>
     );
 };
