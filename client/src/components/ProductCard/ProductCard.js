@@ -41,7 +41,7 @@ const ProductCard = ({ product }) => {
                             <button className={styles.buttonPrimary}>More</button>
                         </Link>
 
-                        <button className={styles.buttonSecondary}>Add to cart</button>
+                        <button className={styles.buttonSecondary} onClick={handleAddtoCart}>Add to cart</button>
 
                     </div>
                     

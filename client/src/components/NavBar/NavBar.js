@@ -10,8 +10,7 @@ const NavBar = () => {
     const cartItemsAmount = useSelector(getCartItemsAmount);
 
     return (
-        <div>
-            <Navbar className={`navbar fixed-top ${styles.navbar}`} expand="lg">
+            <Navbar className={styles.navbar} expand="lg" sticky="top">
                 <Container className={styles.container}>
                     <Navbar.Brand as={NavLink} to='/' className={styles.logo}>PROFFEE</Navbar.Brand>
 
@@ -36,7 +35,6 @@ const NavBar = () => {
 
                 </Container>
             </Navbar>
-        </div>
     )
 };
 

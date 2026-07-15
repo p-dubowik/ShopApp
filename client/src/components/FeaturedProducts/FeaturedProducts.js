@@ -1,4 +1,5 @@
 import formatPrice from "../../utils/formatPrice";
+import { Link } from "react-router-dom";
 import styles from './FeaturedProducts.module.scss';
 
 
@@ -31,6 +32,8 @@ const FeaturedProducts = ({ products }) => {
                                         <p className="card-text text-truncate">{product.description}</p>
 
                                         <p className="fw-bold">{formatPrice(product.price)}</p>
+
+                                        <Link to={`/product/${product.id}`} className={styles.buttonPrimary}>More</Link>
                                     </div>
                                 </div>
                             </div>
