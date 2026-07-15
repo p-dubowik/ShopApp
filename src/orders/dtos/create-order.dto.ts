@@ -3,6 +3,7 @@ import {
     IsNotEmpty,
     IsString,
     IsArray,
+    ArrayMinSize,
     ValidateNested
 } from "class-validator";
 import { Type } from "class-transformer";
@@ -23,6 +24,7 @@ export class CreateOrderDto {
 
     @IsNotEmpty()
     @IsArray()
+    @ArrayMinSize(1, {message: 'Order must contain items'})
     @ValidateNested({ each: true })
     @Type(() => CreateOrderItemDto)
     items: CreateOrderItemDto[]
