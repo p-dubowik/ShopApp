@@ -8,7 +8,10 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   app.enableCors({
-    origin: 'http://localhost:3000',
+    origin: [
+      'http://localhost:3000',
+      'https://proffee-bm1j.onrender.com'
+    ],
   });
 
   await app.enableShutdownHooks();
